@@ -1,0 +1,8 @@
+evidently==0.4.33
+mlflow
+scikit-learn
+pandas
+joblib
+fastapi
+uvicorn
+pydantic
