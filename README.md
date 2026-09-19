@@ -1,6 +1,8 @@
-# 🚀 Enterprise MLOps Pipeline: Automated Drift Detection & Model Governance
+# 🚀 Enterprise MLOps Pipeline: Automated Drift Detection & Governance
 
 An enterprise-grade, production-ready MLOps pipeline implementing continuous model training, experiment tracking, API serving, and automated real-time Data Drift monitoring.
+
+---
 
 ## 🛠️ Architecture & Tech Stack
 - **Experiment Tracking & Registry:** MLflow
@@ -9,9 +11,29 @@ An enterprise-grade, production-ready MLOps pipeline implementing continuous mod
 - **Automated CI/CD:** GitHub Actions
 - **Core Engine:** Python 3.10, Scikit-Learn, Pandas
 
+---
+
 ## 🌟 Key Features
 1. **Automated Experiment Tracking:** Logs metrics, model parameters, and serializes binaries into an SQLite-backed MLflow Registry.
 2. **Real-time Drift Detection:** Detects data shifts across input feature distributions before model degradation occurs in production.
+3. **Continuous Integration Pipeline:** Runs automated pipeline execution and statistical drift validation on every `push` event via GitHub Actions.
+4. **High-Performance API:** Exposes REST endpoints with JSON response payloads for model predictions.
+
+---
+
+## 🚀 How to Run
+
+### 1. Installation
+pip install -r requirements.txt
+
+### 2. Train Model & Track Experiments
+python src/train.py
+
+### 3. Run Data Drift Audit
+python src/monitor.py
+
+### 4. Serve Model via FastAPI
+uvicorn src.serve:app --reload
 3. **Continuous Integration Pipeline:** Runs automated pipeline execution and statistical drift validation on every `push` event via GitHub Actions.
 4. **High-Performance API:** Exposes REST endpoints with JSON response payloads for model predictions.
 
