@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+mlruns/
+*.db
+monitoring_reports/
+*.html
+.env
