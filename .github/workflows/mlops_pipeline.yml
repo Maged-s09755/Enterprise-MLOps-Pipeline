@@ -3,11 +3,11 @@ name: Final Enterprise MLOps Pipeline
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # يسمح بتشغيل الـ Pipeline يدوياً
+  workflow_dispatch:
 
 jobs:
   mlops_execution:
-    runs-on: ubuntu-24.04 # يحل تنبيه تحديث الأوبونتو
+    runs-on: ubuntu-latest # التغيير هنا إلى ubuntu-latest لحل مشكلة حجز الخادم
     
     steps:
     - name: Checkout Repository
@@ -20,18 +20,18 @@ jobs:
         cache: 'pip'
 
     - name: Install Dependencies
-      continue-on-error: true # يمنع توقف العملية إذا كان ملف المكتبات مفقوداً أو به خطأ
+      continue-on-error: true
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; else echo "No requirements.txt found, skipping..."; fi
 
     - name: Execute Data Drift Audit
-      continue-on-error: true # يتجاوز الخطأ إذا فشل ملف monitor.py
+      continue-on-error: true
       run: |
         if [ -f src/monitor.py ]; then python src/monitor.py; else echo "monitor.py not found, skipping..."; fi
 
     - name: Train and Track Model
-      continue-on-error: true # يتجاوز الخطأ إذا فشل ملف train.py
+      continue-on-error: true
       run: |
         if [ -f src/train.py ]; then python src/train.py; else echo "train.py not found, skipping..."; fi
 concurrency:
